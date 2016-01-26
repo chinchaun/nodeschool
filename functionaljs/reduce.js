@@ -1,21 +1,18 @@
-function getShortMessages(messages) {
-      var msgs =  messages.map(function (msg) {
-         return msg.message;
-      });
-      return msgs.filter(isBiggerThan50Words);
+function countWords(inputWords) {
+      return inputWords.reduce(function (result, word) {
+          result[word] = ++result[word] || 1;
+          return result;
+      }, {});
+}
+    
+module.exports = countWords;
+
+
+function countWords(arr) {
+      return arr.reduce(function(countMap, word) {
+        countMap[word] = ++countMap[word] || 1; // increment or initialize to 1
+        return countMap;
+      }, {}); // second argument to reduce initialises countMap to {}
     }
     
-function isBiggerThan50Words(message) {
-    return message.length <= 50;
-}    
-    
-module.exports = getShortMessages;
-
-
-module.exports = function getShortMessages(messages) {
-      return messages.filter(function(item) {
-        return item.message.length < 50;
-      }).map(function(item) {
-        return item.message;
-      });
-    };
+    module.exports = countWords;
